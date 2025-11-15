@@ -2,17 +2,21 @@ import React, { useState, useEffect } from 'react';
 import TarjetaJuego from '../components/TarjetaJuego';
 import DetalleJuego from '../components/DetalleJuego';
 import FormularioJuego from '../components/FormularioJuego';
+//Las funciones que hacen las peticiones al backend
 import { obtenerJuegos, crearJuego, actualizarJuego, eliminarJuego } from '../services/api';
 import './BibliotecaJuegos.css';
 
+// UseState para manejar nuestros múltiples estados
 const BibliotecaJuegos = () => {
-  const [juegos, setJuegos] = useState([]);
-  const [cargando, setCargando] = useState(true);
-  const [mostrarFormulario, setMostrarFormulario] = useState(false);
-  const [juegoEditar, setJuegoEditar] = useState(null);
-  const [filtro, setFiltro] = useState('todos');
-  const [juegoDetalle, setJuegoDetalle] = useState(null);
-  const [busqueda, setBusqueda] = useState('');
+  const [juegos, setJuegos] = useState([]); //Guarda la lista de juegos
+  const [cargando, setCargando] = useState(true); //Indica si está cargando (true) o ya cargó (false) por si acaso
+  const [mostrarFormulario, setMostrarFormulario] = useState(false); //Verifica si se esta mostrando el formulario
+  const [juegoEditar, setJuegoEditar] = useState(null); //Guarda el juego que se está editando
+  const [filtro, setFiltro] = useState('todos'); //Controla el filtro activo : 'todos', 'completados', 'pendientes'
+
+
+  const [juegoDetalle, setJuegoDetalle] = useState(null); //Guarda el ID del juego para mostrar detalles
+  const [busqueda, setBusqueda] = useState(''); //Guarda el texto de búsqueda
 
   // Cargar juegos al iniciar
   useEffect(() => {
@@ -32,14 +36,15 @@ const BibliotecaJuegos = () => {
     }
   };
 
+  //Agregar juego
   const handleAgregarJuego = () => {
-    setJuegoEditar(null);
-    setMostrarFormulario(true);
+    setJuegoEditar(null); // No hay juego a editar
+    setMostrarFormulario(true); //Muestra el formulario vacío
   };
 
   const handleEditarJuego = (juego) => {
-    setJuegoEditar(juego);
-    setMostrarFormulario(true);
+    setJuegoEditar(juego); // Si hay juego a editar
+    setMostrarFormulario(true); // Muestra el formulario con datos
   };
 
   const handleSubmitFormulario = async (formData) => {
@@ -64,32 +69,32 @@ const BibliotecaJuegos = () => {
   };
 
   const handleEliminarJuego = async (id) => {
-    if (window.confirm('¿Estás seguro de eliminar este juego?')) {
-      try {
-        await eliminarJuego(id);
-        alert('✅ Juego eliminado exitosamente');
-        cargarJuegos();
-      } catch (error) {
-        console.error('Error al eliminar:', error);
-        alert('❌ Error al eliminar el juego');
+      if (window.confirm('¿Estás seguro de eliminar este juego?')) {
+          try {
+              await eliminarJuego(id);  // Elimina del backend
+              alert('✅ Juego eliminado exitosamente');
+              cargarJuegos();  // Recarga la lista
+          } catch (error) {
+              console.error('Error al eliminar:', error);
+              alert('❌ Error al eliminar el juego');
+          }
       }
-    }
   };
 
   const handleVerDetalles = (id) => {
-    setJuegoDetalle(id);
+    setJuegoDetalle(id); //Para guardar id y mostrar detalles
   };
 
 // Filtrar juegos por estado (completado/pendiente)
 const juegosFiltrados = juegos.filter(juego => {
-  if (filtro === 'completados') return juego.completado;
-  if (filtro === 'pendientes') return !juego.completado;
+  if (filtro === 'completados') return juego.completado; // Solo completados
+  if (filtro === 'pendientes') return !juego.completado; // Solo pendientes
   return true;
 });
 
 // Filtrar por búsqueda
 const juegosFinales = juegosFiltrados.filter(juego => {
-  if (!busqueda) return true;
+  if (!busqueda) return true; // Si no hay búsqueda nos muestra todos
   
   const searchLower = busqueda.toLowerCase();
   return (
@@ -203,7 +208,7 @@ return (
       </div>
     ) : (
       <div className="juegos-grid">
-        {juegosFinales.map(juego => (
+        {juegosFinales.map(juego => (  // map para recorrer cada juego y poderlo mostrar
           <TarjetaJuego
             key={juego._id}
             juego={juego}

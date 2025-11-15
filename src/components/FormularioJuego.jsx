@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './FormularioJuego.css';
 
 const FormularioJuego = ({ juegoEditar, onSubmit, onCancelar }) => {
+  // Guarda TODOS los campos del formulario
   const [formData, setFormData] = useState({
     titulo: '',
     genero: 'Acción',
@@ -30,15 +31,15 @@ const FormularioJuego = ({ juegoEditar, onSubmit, onCancelar }) => {
   }, [juegoEditar]);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === 'checkbox' ? checked : value
-    });
+      const { name, value, type, checked } = e.target;
+      setFormData({
+          ...formData,  // Copia todo lo que ya estaba
+          [name]: type === 'checkbox' ? checked : value  // Actualiza solo el campo que cambió
+      });
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Evita que la página se recargue
     onSubmit(formData);
   };
 

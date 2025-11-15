@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from 'axios';  //peticiones pa el backend más easy
 
-// URL base de tu backend
-const API_URL = 'http://localhost:5000/api';
+// URL base de backend
+const API_URL = 'https://backend-tracker-d5x9.onrender.com/';
 
 // ==================== SERVICIOS DE JUEGOS ====================
 

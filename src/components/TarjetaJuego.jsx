@@ -1,6 +1,5 @@
 import React from 'react';
 import './TarjetaJuego.css';
-
 const TarjetaJuego = ({ juego, onEliminar, onEditar, onVerDetalles }) => {
   return (
     <div className="tarjeta-juego">
@@ -13,7 +12,7 @@ const TarjetaJuego = ({ juego, onEliminar, onEditar, onVerDetalles }) => {
           }}
         />
         {juego.completado && (
-          <span className="badge-completado">✓ Completado</span>
+          <span className="badge-completado">✓ Completado</span> // SOLO SI EL JUEGO FUE COMPLETADO
         )}
       </div>
       

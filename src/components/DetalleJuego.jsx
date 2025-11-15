@@ -4,14 +4,15 @@ import FormularioReseña from './FormularioReseña';
 import './DetalleJuego.css';
 
 const DetalleJuego = ({ juegoId, onCerrar }) => {
-  const [juego, setJuego] = useState(null);
-  const [reseñas, setReseñas] = useState([]);
-  const [cargando, setCargando] = useState(true);
-  const [mostrarFormReseña, setMostrarFormReseña] = useState(false);
-  const [reseñaEditar, setReseñaEditar] = useState(null);
-  const [busquedaReseña, setBusquedaReseña] = useState(''); // ← NUEVO ESTADO
+const [juego, setJuego] = useState(null);  // Info del juego
+const [reseñas, setReseñas] = useState([]);  // Reseñas del juego
+const [cargando, setCargando] = useState(true);  // Indicador de carga
+const [mostrarFormReseña, setMostrarFormReseña] = useState(false);  // Mostrar/ocultar form
+const [reseñaEditar, setReseñaEditar] = useState(null);  // Reseña a editar
+const [busquedaReseña, setBusquedaReseña] = useState('');  // Búsqueda en reseñas
 
   // FUNCIÓN cargarDatos PRIMERO
+  // usecallback "memoriza" la función para que no se recree en cada render
   const cargarDatos = useCallback(async () => {
     try {
       setCargando(true);
