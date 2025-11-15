@@ -1,7 +1,7 @@
 import axios from 'axios';  //peticiones pa el backend más easy
 
 // URL base de backend
-const API_URL = 'https://backend-tracker-d5x9.onrender.com/';
+const API_URL = 'https://backend-tracker-d5x9.onrender.com/api';
 
 // ==================== SERVICIOS DE JUEGOS ====================
 
