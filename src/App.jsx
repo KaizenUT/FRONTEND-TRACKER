@@ -16,10 +16,10 @@ function App() {
             </div>
             
             <div className="navbar-menu">
-              <Link to="/" className="nav-btn">
+              <Link to="/FRONTEND-TRACKER/" className="nav-btn">
                 📚 Mi Biblioteca
               </Link>
-              <Link to="/estadisticas" className="nav-btn">
+              <Link to="/FRONTEND-TRACKER/estadisticas" className="nav-btn">
                 📊 Estadísticas
               </Link>
             </div>
