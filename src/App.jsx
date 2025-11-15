@@ -28,8 +28,8 @@ function App() {
 
         <main className="main-content">
           <Routes>
-            <Route path="/FRONTEND-TRACKER/" element={<BibliotecaJuegos />} />
-            <Route path="/FRONTEND-TRACKER/estadisticas" element={<EstadisticasPersonales />} />
+            <Route path="/" element={<BibliotecaJuegos />} />
+            <Route path="/estadisticas" element={<EstadisticasPersonales />} />
           </Routes>
         </main>
       </div>
